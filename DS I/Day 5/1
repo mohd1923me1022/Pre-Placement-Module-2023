@@ -1,0 +1,64 @@
+class Solution {
+public:
+    bool has_duplicate(vector<int>& numbers)
+    {
+        int size = numbers.size();
+        vector<int> num_counts(9, 0);
+        for(int i = 0; i < size; i++)
+        {
+            num_counts[numbers[i]-1]++;
+        }
+        
+        for(int i= 0; i < 9; i++)
+        {
+            if(num_counts[i] > 1)
+                return true;
+        }
+        return false;
+    }
+    
+    
+    bool is_box_valid(vector<vector<char>>& board, int s_row, int s_col)
+    {
+        vector<int> sub_box;
+        for(int row = 0; row < 3; row++)
+        {
+            for(int col = 0; col < 3; col++)
+            {
+                if(board[row+s_row][col+s_col] != '.')
+                {
+                    sub_box.push_back((int)board[row+s_row][col+s_col] - 48);
+                }
+            }
+        }
+        
+        if(has_duplicate(sub_box))
+            return false;
+        return true;
+    }
+    
+    bool isValidSudoku(vector<vector<char>>& board) {
+        vector<int> row;
+        vector<int> col;
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(board[i][j] != '.')
+                    row.push_back((int)board[i][j] - 48);
+                
+                if(board[j][i] != '.')
+                    col.push_back((int)board[j][i] - 48);
+                
+                if(!is_box_valid(board, i - i % 3, j - j % 3))
+                    return false; 
+            }
+            if(has_duplicate(row) || has_duplicate(col))
+                return false;                
+            
+            row = {};
+            col = {};
+        }
+        return true;
+    }
+};
