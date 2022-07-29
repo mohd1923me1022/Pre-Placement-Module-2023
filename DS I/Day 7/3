@@ -1,0 +1,30 @@
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head == nullptr)
+            return nullptr;
+        if(head->next !=nullptr && head->val == head -> next->val)
+        { head->next = deleteDuplicates(head->next->next);
+		
+         // to check if the next val is the same after we  sort and to 
+         //our List and to check if head->next is not nullptr , if it is to return only one node 
+          if(head->next != nullptr && head->val == head->next->val)
+              return head->next;
+        }
+		
+        // to check if head->next is nullptr and  create
+        //ListNode "tmp" to save the old value of head and to assign       
+		// "head" to nullptr  then return tmp
+        else if(head->next == nullptr){
+           ListNode * tmp;
+            tmp = head;
+            head = deleteDuplicates(head->next);
+            return tmp;
+        }
+		
+		//otherwise traverse to the next  node 
+        else 
+            head->next = deleteDuplicates(head->next);
+    return head;
+    }
+};
