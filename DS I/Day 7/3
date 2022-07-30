@@ -1,30 +1,28 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        if(head == nullptr)
-            return nullptr;
-        if(head->next !=nullptr && head->val == head -> next->val)
-        { head->next = deleteDuplicates(head->next->next);
-		
-         // to check if the next val is the same after we  sort and to 
-         //our List and to check if head->next is not nullptr , if it is to return only one node 
-          if(head->next != nullptr && head->val == head->next->val)
-              return head->next;
+    ListNode* removeElements(ListNode* head, int val) {
+        ListNode* dummyhead = new ListNode(0);
+        dummyhead -> next = head;
+        ListNode * cur = dummyhead;
+        
+        while (cur -> next)
+        {
+            if (cur -> next -> val == val)
+                cur -> next = cur -> next -> next;
+            else
+                cur = cur -> next;
         }
-		
-        // to check if head->next is nullptr and  create
-        //ListNode "tmp" to save the old value of head and to assign       
-		// "head" to nullptr  then return tmp
-        else if(head->next == nullptr){
-           ListNode * tmp;
-            tmp = head;
-            head = deleteDuplicates(head->next);
-            return tmp;
-        }
-		
-		//otherwise traverse to the next  node 
-        else 
-            head->next = deleteDuplicates(head->next);
-    return head;
+        return dummyhead -> next;
+        
     }
 };
