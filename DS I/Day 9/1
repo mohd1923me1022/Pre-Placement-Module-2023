@@ -1,0 +1,21 @@
+class Solution {
+    private:
+    char opposite(const char& c) {
+        switch (c) {
+            case ')': return '(';
+            case ']': return '[';
+            case '}': return '{';
+        }
+        return '\0';
+    }
+    public:
+    bool isValid(string s) {
+        stack<char> track;
+        for (const char& c : s) {
+            if (c == '(' || c == '[' || c == '{') track.push(c);
+            else if (!track.empty() && track.top() == opposite(c)) track.pop();
+            else return false;
+        }
+        return track.empty() ? true : false;
+    }
+};
