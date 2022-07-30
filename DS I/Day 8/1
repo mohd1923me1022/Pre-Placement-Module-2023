@@ -1,0 +1,38 @@
+int val;
+ListNode *next;
+ListNode() : val(0), next(nullptr) {}
+ListNode(int x) : val(x), next(nullptr) {}
+ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+/
+class Solution {
+public:
+ListNode reverseList(ListNode* head) {
+
+if(head != NULL){
+ListNode* prev = NULL;
+ListNode* current = head;
+ListNode* Next = current -> next;
+
+ while(current != NULL || Next != NULL){
+     
+     current -> next = prev;
+     
+     prev = current;
+     current = Next;
+     
+     if(Next != NULL)Next = Next -> next;
+       
+ }
+ 
+ // Now head is pointing to the last Node
+ // Which now becomes our first node.
+ head = prev;
+ 
+ return head;
+}else{
+
+ return head;
+}
+}
+};
