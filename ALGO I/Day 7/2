@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int res = 0;
+        int H = grid.size(), W = grid[0].size();
+        
+        vector<vector<int>> directions = {{0,1}, {0,-1}, {1,0}, {-1,0}};
+        
+        for(int i=0; i<H; i++){
+            for(int j=0; j<W; j++){
+                
+                if(grid[i][j] == 1) {
+                    
+                    queue<pair<int,int>> q;
+                    q.push({i,j});
+					// set this to zero so we don't double count it.
+                    grid[i][j] = 0;
+                    int count = 1;
+                    
+                    while(!q.empty()){
+                        int sz = q.size();
+                        
+                        
+                        for(int k=0; k<sz; k++){
+                            pair<int,int> current = q.front();
+                            q.pop();
+                            
+                            for(int l=0; l<4; l++) {
+                                int row = current.first + directions[l][0];
+                                int col = current.second + directions[l][1];
+                                
+                                if(row>=0 and row<H and col>=0 and col<W and grid[row][col] == 1){
+								// set the 1s to 0 to mark it as visited. 
+                                    grid[row][col] = 0;
+                                    count++;
+                                    q.push({row,col});
+                                }
+                            }
+                        }
+                    }
+                    res = max(res, count);
+                }
+            }
+        }
+        return res;
+    }
+};
