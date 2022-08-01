@@ -1,22 +1,3 @@
-Skip to content
-cheater108
-/
-Pre-Placement-Module-2023
-Public
-forked from rohan-khurana/Pre-Placement-Module-2023
-Code
-Pull requests
-Actions
-Projects
-Wiki
-Security
-More
-Pre-Placement-Module-2023/DS I/Day 10/Binary_Inorder.cpp
-@cheater108
-cheater108 Create Binary_Inorder.cpp
- History
- 1 contributor
-25 lines (24 sloc)  679 Bytes
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -30,30 +11,15 @@ cheater108 Create Binary_Inorder.cpp
  */
 class Solution {
 public:
-    vector<int> ans;
-    vector<int> inorderTraversal(TreeNode* root) {
-        
-        if (root == nullptr){
-            return ans;
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == nullptr){
+            return nullptr;
         }
-        ans = inorderTraversal(root->left);
-        ans.push_back(root->val);
-        ans = inorderTraversal(root->right);
-        return ans;
+        TreeNode* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+        TreeNode* t = invertTree(root->left);
+        TreeNode* s = invertTree(root->right);
+        return root;
     }
 };
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-You have no unread notifications
