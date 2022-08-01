@@ -1,0 +1,16 @@
+class Solution {
+public:
+    Node* connect(Node* root) {
+        auto head = root;
+        while (head && head->left) {
+            auto next = head->left;
+            while (head) {
+                head->left->next = head->right;
+                head->right->next = head->next ? head->next->left : nullptr;
+                head = head->next;
+            };
+            head = next;
+        };
+        return root;
+    }
+};
