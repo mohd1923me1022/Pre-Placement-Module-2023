@@ -1,0 +1,15 @@
+class Solution {
+    void helper (vector<char> &s,  int idx , int pos){
+        if(idx < pos){
+             swap(s[pos], s[idx]);
+            helper(s,  idx +1, pos-1);
+        }
+          
+    }
+public:
+    void reverseString(vector<char>& s) {
+        int n = s.size();
+        helper(s, 0, n-1);
+     
+    }
+};
