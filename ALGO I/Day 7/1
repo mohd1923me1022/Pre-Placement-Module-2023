@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> checkDirs(vector<vector<int>>& image, int sr, int sc, int newColor, int prevVal) {
+        int m = image.size(), n = image[0].size();
+        
+        if (sr < 0 || sr >= m || sc < 0 || sc >= n)
+            return image;
+        
+        if (image[sr][sc] != prevVal)
+            return image;
+        
+        if (image[sr][sc] == newColor) 
+            return image;
+        
+        prevVal = image[sr][sc];
+        image[sr][sc] = newColor;
+        image = checkDirs(image, sr+1, sc, newColor, prevVal);
+        image = checkDirs(image, sr-1, sc, newColor, prevVal);
+        image = checkDirs(image, sr, sc+1, newColor, prevVal);
+        image = checkDirs(image, sr, sc-1, newColor, prevVal);
+        
+        return image;
+    } 
+    
+    
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {               int prevVal = image[sr][sc];
+        return checkDirs(image, sr, sc, newColor, prevVal);
+    }
+};
