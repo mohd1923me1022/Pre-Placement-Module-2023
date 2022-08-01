@@ -11,16 +11,19 @@
  */
 class Solution {
 public:
-    bool hasPathSum(TreeNode* root, int targetSum) {
+    vector<int> ans;
+    vector<int> postorderTraversal(TreeNode* root) {
         if(root == nullptr){
-            return false;
+            return ans;
         }
-        if(root->left == nullptr && root->right == nullptr){
-            if((targetSum - root->val) == 0){
-                return true;
-            }
-            return false;
-        }
-        return hasPathSum(root->left,targetSum-(root->val)) || hasPathSum(root->right,targetSum-(root->val));
+        ans = postorderTraversal(root->left);
+        ans = postorderTraversal(root->right);
+        ans.push_back(root->val);
+        return ans;
     }
 };
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
