@@ -1,22 +1,3 @@
-Skip to content
-cheater108
-/
-Pre-Placement-Module-2023
-Public
-forked from rohan-khurana/Pre-Placement-Module-2023
-Code
-Pull requests
-Actions
-Projects
-Wiki
-Security
-More
-Pre-Placement-Module-2023/DS I/Day 11/Symmetric_Tree.cpp
-@cheater108
-cheater108 Create Symmetric_Tree.cpp
- History
- 1 contributor
-31 lines (31 sloc)  840 Bytes
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -48,18 +29,3 @@ public:
         return sym(root->left,root->right);
     }
 };
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-You have no unread notifications
