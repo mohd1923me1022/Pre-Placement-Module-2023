@@ -1,0 +1,52 @@
+class Solution {
+public:
+    // top left down right
+    const int di[4] = {-1,0,1,0};
+    const int dj[4] = {0,-1,0,1};
+    bool valid(int i,int j, int n,int m)
+    {
+        return i>=0 && j>=0 && i<n && j<m;
+    }
+    vector<vector<int>> bfs(vector<vector<int>>& mat)
+    {
+        int n = mat.size();
+        int m = mat[0].size();
+        vector<vector<int>> dis(n,vector<int>(m,n*m));
+        queue<pair<int,int>> q;
+        for(int i =0; i<n; ++i)
+        {
+            for(int j =0; j<m; ++j)
+            {
+                if(mat[i][j] == 0)
+                {
+                    dis[i][j] = 0;
+                    q.emplace(i,j);
+                }
+                    
+            }
+        }
+        
+        while(!q.empty())
+        {
+            int i = q.front().first;
+            int j = q.front().second;
+            int dis_p = dis[i][j];
+            q.pop();
+            
+            for(int k = 0; k<4; ++k)
+            {
+                int new_i = di[k] + i;
+                int new_j = dj[k] + j;
+                if(valid(new_i,new_j,n,m) && dis[new_i][new_j] > dis_p +1)
+                {
+                    dis[new_i][new_j] = dis_p+1;
+                    q.emplace(new_i,new_j);
+                }
+            }
+        }
+        return dis;
+    }
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+      return bfs(mat);   
+    }
+};
