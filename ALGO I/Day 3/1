@@ -1,0 +1,23 @@
+ class Solution {
+ public:
+ 
+ void moveZeroes(vector<int>& nums) {
+    int len=nums.size()-1, i, j, zero=0; 
+    vector<int> non_zero{};
+    for(i=0; i<=len; i++){
+        if(nums[i]==0){
+            zero++;
+        }
+        else{
+            non_zero.push_back(nums[i]);
+        }
+    }
+    
+    for(i=0; i<zero; i++){
+        non_zero.push_back(0);
+    }
+    
+    nums=non_zero;
+
+}
+};
